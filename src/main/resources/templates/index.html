@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <script type="text/javascript" th:src="@{/main.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Sogne liste</h1>
+<table style="width: 100%">
+    <thead>
+    <tr style="text-align: left">
+        <th>Sognekode</th>
+        <th>Navn</th>
+        <th>Smitteniveau</th>
+        <th>Nedlukning</th>
+        <th>Kommune</th>
+    </tr>
+    </thead>
+    <tbody id="sognList">
+    </tbody>
+</table>
+<br>
+
+<h1>Kommune liste</h1>
+<table style="width: 100%">
+    <thead>
+    <tr style="text-align: left">
+        <th>Kommunekode</th>
+        <th>Navn</th>
+    </tr>
+    </thead>
+    <tbody id="kommuneList">
+    </tbody>
+</table>
+
+
+<h1>Sogne liste 2</h1>
+<table style="width: 100%">
+    <thead>
+    <tr style="text-align: left">
+        <th>Sognekode</th>
+        <th>Navn</th>
+        <th>Smitteniveau</th>
+        <th>Nedlukning</th>
+        <th>Kommune</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sogn : ${sogne}">
+        <td th:text="${sogn.id}"></td>
+        <td th:text="${sogn.navn}"></td>
+        <td th:text="${sogn.smitteniveau}"></td>
+        <td th:text="${sogn.nedlukningStart}"></td>
+        <td>1</td>
+        <td><input type="checkbox" name="check" value=""> </td>
+        <td><a th:href="@{/sogn/{id}(id=${sogn.id})}">
+            slet
+        </a></td>
+
+    </tr>
+    </tbody>
+</table>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        getSogne();
+        getKommuner();
+    });
+</script>
+</body>
+</html>
